@@ -1,4 +1,4 @@
-package ru.sut.zss.ip;
+package ru.sut.zss.ipbegin;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,6 +7,9 @@ public class Question implements Parcelable {
 
     private String question;
     private String answer;
+
+    public Question() {
+    }
 
     @Override
     public int describeContents() {
@@ -32,10 +35,6 @@ public class Question implements Parcelable {
             return new Question[size];
         }
     };
-
-    public Question() {
-
-    }
 
     private Question(Parcel in) {
         question = in.readString();

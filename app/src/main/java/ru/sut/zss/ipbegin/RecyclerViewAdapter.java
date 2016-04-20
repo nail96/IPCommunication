@@ -1,4 +1,4 @@
-package ru.sut.zss.ip;
+package ru.sut.zss.ipbegin;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
@@ -15,7 +16,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<QuestionViewHolder
 
     public RecyclerViewAdapter(Context context, List<Question> questionList) {
         mInflater = LayoutInflater.from(context);
-        this.questionList = questionList;
+        this.questionList = getCloneList(questionList);
     }
 
     @Override
@@ -81,15 +82,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<QuestionViewHolder
         return question;
     }
 
-    public void addItem(int posistion, Question quetion) {
-        questionList.add(posistion, quetion);
-        notifyItemInserted(posistion);
+    public void addItem(int position, Question question) {
+        questionList.add(position, question);
+        notifyItemInserted(position);
     }
 
     public void moveItem(int fromPosition, int toPosition) {
         final Question question = questionList.remove(fromPosition);
         questionList.add(toPosition, question);
         notifyItemMoved(fromPosition, toPosition);
+    }
+
+    private List<Question> getCloneList(List<Question> questionList) {
+        List<Question> newQuestionList = new ArrayList<>(questionList.size());
+        for (Question question : questionList) {
+            newQuestionList.add(question);
+        }
+        return newQuestionList;
     }
 
 }

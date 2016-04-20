@@ -1,4 +1,4 @@
-package ru.sut.zss.ip;
+package ru.sut.zss.ipbegin;
 
 
 import android.support.v7.widget.CardView;
